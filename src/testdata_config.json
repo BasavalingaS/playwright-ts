@@ -1,0 +1,85 @@
+{
+  "suite": {
+    "name": "BI Testcase",
+    "type": "browser",
+    "runon": "chromium",
+    "baseurl": "https://demo.bigiron.com",
+    "fixtures": [
+      {
+        "name": "user related",
+        "tests": [
+          {
+            "id": "#1",
+            "name": "login test should pass",
+            "navigateTo": "/SignIn",
+            "dependsOn": [],
+            "steps": [
+              {
+                "type": "form",
+                "fields": [
+                  {
+                    "type": "text",
+                    "selector": "#SignInUserName",
+                    "value": "basu123"
+                  },
+                  {
+                    "type": "text",
+                    "selector": "#signin-password",
+                    "value": "te$tpa$$w0rd"
+                  },
+                  {
+                    "type": "button",
+                    "selector": ".col-sm-8 > .btn"
+                  }
+                ],
+                "assertions": [
+                  {
+                    "type": "title",
+                    "selector": ".navbar-youraccount",
+                    "value": "basu123",
+                    "message": "login success"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "#2",
+            "name": "login test should fail",
+            "navigateTo": "/SignIn",
+            "dependsOn": [],
+            "steps": [
+              {
+                "type": "form",
+                "fields": [
+                  {
+                    "type": "text",
+                    "selector": "#SignInUserName",
+                    "value": "bassssu123"
+                  },
+                  {
+                    "type": "text",
+                    "selector": "#signin-password",
+                    "value": "te$tpa$$w0rd"
+                  },
+                  {
+                    "type": "button",
+                    "selector": ".col-sm-8 > .btn"
+                  }
+                ],
+                "assertions": [
+                  {
+                    "type": "title",
+                    "selector": ".alert-dismissible span",
+                    "value": "Username or password is incorrect. Please try again.",
+                    "message": "login failed"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
